@@ -5,7 +5,7 @@
 <img src="https://i.ibb.co/L1VqhP0/movie-Search.png" align="right" alt="img" width="50%" height="auto" border="0">
 Este proyecto es una aplicación web de búsqueda de películas desarrollada con Lightning Web Components (LWC) de Salesforce. La aplicación permite a los usuarios buscar películas utilizando la API de OMDB (Open Movie Database). A través de una interfaz intuitiva, los usuarios pueden explorar información detallada sobre películas, series y episodios.
 
-## ✨ Características Principales
+### ✨ Características Principales
 - 🔍 Búsqueda en tiempo real de películas y series
 - 🎯 Integración con la API pública de OMDB
 - 📱 Interfaz responsive y amigable
