@@ -1,10 +1,36 @@
 <template>
-    <div class={cardSelected} onclick={clickHandler}>
+  <div class={cardSelected} onclick={clickHandler}>
       <div class="innerCard">
-        <img src={movie.Poster} alt={movie.Title} />
-        <div class="lower-third">
-          <h3>{movie.Title}</h3>
-        </div>
+          <!-- Poster con fallback -->
+          <div class="poster-container">
+              <template if:true={hasPoster}>
+                  <img src={movie.Poster} alt={movie.Title} class="poster-image" />
+              </template>
+              <template if:false={hasPoster}>
+                  <div class="poster-fallback">
+                      <lightning-icon icon-name="utility:photo" size="large"></lightning-icon>
+                      <p>No disponible</p>
+                  </div>
+              </template>
+          </div>
+
+          <!-- Overlay con información -->
+          <div class="content-overlay">
+              <div class="movie-info">
+                  <h3 class="movie-title">{movie.Title}</h3>
+                  <div class="movie-meta">
+                      <span class="year">{movie.Year}</span>
+                      <span class="type">{typeFormatted}</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Indicador de selección -->
+          <template if:true={isSelected}>
+              <div class="selection-indicator">
+                  <lightning-icon icon-name="utility:check" size="small" class="check-icon"></lightning-icon>
+              </div>
+          </template>
       </div>
-    </div>
+  </div>
 </template>

@@ -1,24 +1,29 @@
 import { api, LightningElement } from 'lwc';
 
 export default class MovieCard extends LightningElement {
-  @api movie;
-  @api selectedMovieId;
+    @api movie;
+    @api selectedMovieId;
 
-  clickHandler(e){
-    const evt = new CustomEvent('selectedmovie', {
-      detail : this.movie.imdbID
-    })
-    console.log("se hizo click en: ",  this.movie.imdbID);
+    clickHandler(e) {
+        const evt = new CustomEvent('selectedmovie', {
+            detail: this.movie.imdbID
+        });
+        this.dispatchEvent(evt);
+    }
 
-    this.dispatchEvent(evt);
-  }
+    get cardSelected() {
+        return this.selectedMovieId === this.movie.imdbID ? "card selected" : "card";
+    }
 
-  get cardSelected(){
-    console.log("vamos a comparar : ", this.selectedMovieId);
-    console.log("con: ", this.movie.imdbID);
-    
-    return this.selectedMovieId === this.movie.imdbID 
-    ? "card selected" 
-    : "card";
-  }
+    get isSelected() {
+        return this.selectedMovieId === this.movie.imdbID;
+    }
+
+    get hasPoster() {
+        return this.movie.Poster && this.movie.Poster !== 'N/A';
+    }
+
+    get typeFormatted() {
+        return this.movie.Type ? this.movie.Type.charAt(0).toUpperCase() + this.movie.Type.slice(1) : '';
+    }
 }

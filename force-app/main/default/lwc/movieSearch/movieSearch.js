@@ -1,4 +1,7 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
+// Import message service features required for publishing and the message channel
+import { publish, MessageContext } from 'lightning/messageService';
+import MOVIE_CHANNEL from '@salesforce/messageChannel/movieChannel__c';
 
 const DELAY = 300; // Delay para evitar la sobrecarga de la API
 
@@ -10,6 +13,8 @@ export default class MovieSearch extends LightningElement {
   delayTimeout; // timeout de la busqueda
   searchResult = []; //resultados de la API
   selectedMovieId = ''; // pelicula seleccionada
+  @wire(MessageContext)
+    messageContext;
 
   get typeOptions() {
     return [
@@ -58,7 +63,10 @@ export default class MovieSearch extends LightningElement {
   }
 
   movieSelectedHandler(e){
-    console.log("padre le envia: ",  e.detail);
     this.selectedMovieId = e.detail;
+
+    // mensaje para comunicar el id al componente sin relación (movieDetail)
+    const payload = { movieId: this.selectedMovieId };
+    publish(this.messageContext, MOVIE_CHANNEL, payload);
   }
 }

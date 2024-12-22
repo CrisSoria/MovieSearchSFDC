@@ -1,26 +1,142 @@
-.card{
-  display: block;
-  background-color: black;
-  cursor: pointer;
+/* Contenedor principal */
+.card {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1a1a1a;
 }
-.innerCard{
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor interno */
+.innerCard {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
+  overflow: hidden;
 }
-.lower-third{
+
+/* Estilos del póster */
+.poster-container {
+  width: 100%;
+  height: 100%;
+  background-color: #2a2a2a;
+}
+
+.poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .poster-image {
+  transform: scale(1.05);
+}
+
+/* Fallback cuando no hay póster */
+.poster-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a2a2a;
+  color: #666;
+}
+
+.poster-fallback lightning-icon {
+  --sds-c-icon-color-foreground-default: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* Overlay con información */
+.content-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  color: #fff;
-  background-color: #000;
-  padding: 6px 8px;
-  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+  padding: 20px;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
-.selected{
-  border: 5px solid #ff0000;
+
+.movie-info {
+  color: #ffffff;
+}
+
+.movie-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movie-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #d4aa11;
+}
+
+.type {
+  text-transform: capitalize;
+  background-color: rgba(212, 170, 17, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Estado seleccionado */
+.selected {
+  border: 3px solid #d4aa11;
+  transform: scale(1.02);
+}
+
+.selected .content-overlay {
+  background: linear-gradient(to top, rgba(212, 170, 17, 0.9) 0%, rgba(212, 170, 17, 0.7) 60%, transparent 100%);
+}
+
+.selection-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #d4aa11;
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  --sds-c-icon-color-foreground-default: #ffffff;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .card {
+      height: 280px;
+  }
 }

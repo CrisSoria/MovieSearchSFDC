@@ -1,70 +1,103 @@
 <template>
-  <!-- Filter Section -->
-  <div class="filter-section">
-    <lightning-layout horizontal-align="center">
-
-      <lightning-layout-item padding="around-small" size="3">
-        <lightning-combobox 
-          name="type" 
-          label="Type" 
-          value={selectedType} 
-          placeholder="Selecciona el tipo"
-          options={typeOptions} 
-          onchange={handleChange}>
-        </lightning-combobox>
-      </lightning-layout-item>
-      
-      <lightning-layout-item padding="around-small" size="7">
-        <lightning-input 
-          name="search" 
-          label="Ingresa tu búsqueda" 
-          placeholder="Busca tu serie o película" 
-          type="search"
-          is-loading={loading} 
-          onchange={handleChange}>
-        </lightning-input>
-      </lightning-layout-item>
-      
-      <lightning-layout-item padding="around-small" size="2">
-        <lightning-input 
-          type="number" 
-          name="pageN" 
-          label="Página" 
-          onchange={handleChange} 
-          value={selectedPageN}
-          field-level-help="Rango de 1 a 100" 
-          min="1" 
-          max="100" 
-          step="1"
-          message-when-range-underflow="El valor debe ser mayor a 0"
-          message-when-range-overflow="El valor debe ser menor a 101">
-        </lightning-input>
-      </lightning-layout-item>
-
-    </lightning-layout>
+  <!-- Sección de Filtros -->
+  <div class="search-container slds-var-p-around_medium">
+      <div class="filter-section slds-var-p-around_medium">
+          <h2 class="slds-text-heading_medium slds-var-p-bottom_small section-title">
+              <lightning-icon icon-name="utility:search" class="slds-var-p-right_small" size="small"></lightning-icon>
+              Buscador de Películas y Series
+          </h2>
+          
+          <lightning-layout horizontal-align="center" multiple-rows="true">
+              <!-- Tipo de contenido -->
+              <lightning-layout-item padding="horizontal-small" size="12" medium-device-size="3">
+                  <lightning-combobox 
+                      name="type" 
+                      label="Tipo de contenido"
+                      value={selectedType} 
+                      placeholder="Selecciona el tipo"
+                      options={typeOptions} 
+                      onchange={handleChange}
+                      class="custom-combobox">
+                  </lightning-combobox>
+              </lightning-layout-item>
+              
+              <!-- Barra de búsqueda -->
+              <lightning-layout-item padding="horizontal-small" size="12" medium-device-size="7">
+                  <lightning-input 
+                      name="search" 
+                      label="Búsqueda"
+                      placeholder="Ingresa el título que deseas buscar..." 
+                      type="search"
+                      is-loading={loading} 
+                      onchange={handleChange}
+                      class="custom-input">
+                      <div slot="end-icon">
+                          <template if:true={loading}>
+                              <div class="slds-is-relative">
+                                  <lightning-spinner alternative-text="Buscando" size="small"></lightning-spinner>
+                              </div>
+                          </template>
+                      </div>
+                  </lightning-input>
+              </lightning-layout-item>
+              
+              <!-- Paginación -->
+              <lightning-layout-item padding="horizontal-small" size="12" medium-device-size="2">
+                  <lightning-input 
+                      type="number" 
+                      name="pageN" 
+                      label="Página"
+                      onchange={handleChange} 
+                      value={selectedPageN}
+                      class="custom-input"
+                      min="1" 
+                      max="100" 
+                      step="1">
+                  </lightning-input>
+              </lightning-layout-item>
+          </lightning-layout>
+      </div>
   </div>
-  <!-- Display Section -->
-   <template lwc:if={displaySearchResult}>
-    <div class="slds-var-m-top_large slds-scrolleable_y display-section slds-box">
-      <lightning-layout 
-        horizontal-align="center"
-        multiple-rows="true"
-      >
-      <template for:each={searchResult} for:item="searchItem">
-        <lightning-layout-item 
-          size="3" 
-          padding="arround-small" 
-          key={searchItem.imdbID}
-        >
-          <c-movie-card 
-          movie={searchItem} 
-          selected-movie-id={selectedMovieId}
-          onselectedmovie={movieSelectedHandler}></c-movie-card>
-        </lightning-layout-item>
-      </template>
-    </lightning-layout>
-    </div>
-  </template>
-  
 
+  <!-- Sección de Resultados -->
+  <template if:true={displaySearchResult}>
+      <div class="display-section slds-var-p-around_medium slds-scrollable_y">
+          <div if:true={searchResult.length} class="results-summary slds-var-p-bottom_small">
+              <p class="slds-text-color_weak">Mostrando resultados para "{selectedSearch}"</p>
+          </div>
+          
+          <lightning-layout horizontal-align="center" multiple-rows="true">
+              <template for:each={searchResult} for:item="searchItem">
+                  <lightning-layout-item 
+                      key={searchItem.imdbID}
+                      size="12"
+                      small-device-size="6"
+                      medium-device-size="4"
+                      large-device-size="3"
+                      padding="around-small">
+                      <c-movie-card 
+                          movie={searchItem} 
+                          selected-movie-id={selectedMovieId}
+                          onselectedmovie={movieSelectedHandler}>
+                      </c-movie-card>
+                  </lightning-layout-item>
+              </template>
+          </lightning-layout>
+      </div>
+  </template>
+
+  <!-- Mensaje cuando no hay resultados -->
+  <template if:false={displaySearchResult}>
+      <div class="empty-state slds-var-p-around_large">
+          <div class="slds-text-align_center">
+              <lightning-icon icon-name="utility:video" size="large" class="empty-icon"></lightning-icon>
+              <h3 class="slds-text-heading_medium slds-var-p-top_small">
+                  Comienza tu búsqueda
+              </h3>
+              <p class="slds-text-body_regular slds-var-p-top_xx-small">
+                  Ingresa un título para descubrir películas y series
+              </p>
+          </div>
+      </div>
+  </template>
 </template>

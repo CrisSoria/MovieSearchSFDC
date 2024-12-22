@@ -1,3 +1,74 @@
 <template>
-    
+    <template lwc:if={loadComponent}>
+        <div class="slds-var-p-around_medium container">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <!-- Columna del Poster -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-4">
+                    <div class="poster-container">
+                        <img src={movieDetails.Poster} alt="Poster de la película" class="movie-poster">
+                        <div class="rating-badge">
+                            <lightning-icon icon-name="utility:favorite" size="small" class="rating-icon"></lightning-icon>
+                            <span class="rating-text">{movieDetails.imdbRating}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna de Detalles -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3 slds-large-size_3-of-4">
+                    <div class="movie-content">
+                        <h1 class="movie-title">{movieDetails.Title}</h1>
+                        
+                        <!-- Metadatos principales -->
+                        <div class="metadata-container">
+                            <span class="metadata-item">{movieDetails.Year}</span>
+                            <span class="metadata-separator">•</span>
+                            <span class="metadata-item">{movieDetails.Runtime}</span>
+                            <span class="metadata-separator">•</span>
+                            <span class="metadata-item">{movieDetails.Rated}</span>
+                        </div>
+
+                        <!-- Géneros -->
+                        <div class="genres-container">
+                            <template for:each={genreList} for:item="genre">
+                                <span key={genre} class="genre-badge">{genre}</span>
+                            </template>
+                        </div>
+
+                        <!-- Información detallada -->
+                        <div class="movie-info">
+                            <div class="info-section">
+                                <h3 class="section-title">Sinopsis</h3>
+                                <p class="plot">{movieDetails.Plot}</p>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3 class="info-label">Director</h3>
+                                    <p>{movieDetails.Director}</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3 class="info-label">Reparto Principal</h3>
+                                    <p>{movieDetails.Actors}</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3 class="info-label">Fecha de Estreno</h3>
+                                    <p>{movieDetails.Released}</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3 class="info-label">Idiomas</h3>
+                                    <p>{movieDetails.Language}</p>
+                                </div>
+                            </div>
+
+                            <!-- Premios -->
+                            <div class="awards-section">
+                                <lightning-icon icon-name="utility:trophy" size="small" class="award-icon"></lightning-icon>
+                                <p class="awards-text">{movieDetails.Awards}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </template>

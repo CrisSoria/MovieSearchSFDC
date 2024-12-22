@@ -1,0 +1,149 @@
+/* Contenedor principal */
+.container {
+  background-color: #171717;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos del póster */
+.poster-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.movie-poster {
+  width: 100%;
+  border: 3px solid #2c2c2c;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster:hover {
+  transform: scale(1.02);
+}
+
+/* Badge de calificación */
+.rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(212, 170, 17, 0.9);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-icon {
+  --sds-c-icon-color-foreground-default: #ffffff;
+}
+
+.rating-text {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 0.25rem;
+}
+
+/* Título y metadatos */
+.movie-title {
+  font-size: 2.5rem;
+  color: #d4aa11;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.metadata-container {
+  margin-bottom: 1rem;
+}
+
+.metadata-item {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.metadata-separator {
+  color: #d4aa11;
+  margin: 0 0.5rem;
+}
+
+/* Géneros */
+.genres-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.genre-badge {
+  background-color: #d4aa11;
+  color: #171717;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Información detallada */
+.movie-info {
+  color: #ffffff;
+}
+
+.section-title {
+  color: #d4aa11;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.info-item {
+  margin-bottom: 1rem;
+}
+
+.info-label {
+  color: #d4aa11;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+/* Sección de premios */
+.awards-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #2c2c2c;
+}
+
+.award-icon {
+  --sds-c-icon-color-foreground-default: #d4aa11;
+}
+
+.awards-text {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .movie-title {
+      font-size: 2rem;
+  }
+
+  .info-grid {
+      grid-template-columns: 1fr;
+  }
+}
