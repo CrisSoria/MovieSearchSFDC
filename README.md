@@ -2,7 +2,7 @@
 # 🎬 Buscador de Películas LWC
 
 ## 📝 Descripción
-<img src="https://i.ibb.co/GF4B4sP/Recipe-Search.png" align="right" alt="img" width="50%" height="auto" border="0">
+<img src="https://i.ibb.co/L1VqhP0/movie-Search.png" align="right" alt="img" width="50%" height="auto" border="0">
 Este proyecto es una aplicación web de búsqueda de películas desarrollada con Lightning Web Components (LWC) de Salesforce. La aplicación permite a los usuarios buscar películas utilizando la API de OMDB (Open Movie Database). A través de una interfaz intuitiva, los usuarios pueden explorar información detallada sobre películas, series y episodios.
 
 ## ✨ Características Principales

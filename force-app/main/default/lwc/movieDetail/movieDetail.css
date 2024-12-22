@@ -1,74 +1,40 @@
 /* Contenedor principal */
 .container {
   background-color: #171717;
-  max-width: 1200px;
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* Estilos del póster */
-.poster-container {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.movie-poster {
-  width: 100%;
-  border: 3px solid #2c2c2c;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.movie-poster:hover {
-  transform: scale(1.02);
-}
-
-/* Badge de calificación */
-.rating-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(212, 170, 17, 0.9);
-  padding: 0.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.rating-icon {
-  --sds-c-icon-color-foreground-default: #ffffff;
-}
-
-.rating-text {
-  color: #ffffff;
-  font-weight: bold;
-  margin-left: 0.25rem;
+  height: 100%;
+  overflow-y: auto;
 }
 
 /* Título y metadatos */
 .movie-title {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   color: #d4aa11;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .metadata-container {
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .metadata-item {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .metadata-separator {
   color: #d4aa11;
-  margin: 0 0.5rem;
 }
 
 /* Géneros */
@@ -76,7 +42,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .genre-badge {
@@ -84,8 +50,21 @@
   color: #171717;
   padding: 0.25rem 0.75rem;
   border-radius: 16px;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
+}
+
+/* Poster */
+.poster-container {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.movie-poster {
+  width: 100%;
+  border: 2px solid #2c2c2c;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
 /* Información detallada */
@@ -95,36 +74,47 @@
 
 .section-title {
   color: #d4aa11;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
+.plot {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .info-item {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .info-label {
   color: #d4aa11;
-  font-size: 1rem;
+  font-size: 0.875rem;
   margin-bottom: 0.25rem;
   font-weight: 500;
 }
 
-/* Sección de premios */
+.info-item p {
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+/* Premios */
 .awards-section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid #2c2c2c;
 }
 
@@ -134,16 +124,21 @@
 
 .awards-text {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Iconos */
+.rating-icon {
+  --sds-c-icon-color-foreground-default: #d4aa11;
 }
 
 /* Responsividad */
 @media (max-width: 768px) {
-  .movie-title {
-      font-size: 2rem;
-  }
-
   .info-grid {
       grid-template-columns: 1fr;
+  }
+  
+  .movie-title {
+      font-size: 1.5rem;
   }
 }
