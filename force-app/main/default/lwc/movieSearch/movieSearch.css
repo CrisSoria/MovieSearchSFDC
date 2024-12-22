@@ -1,0 +1,9 @@
+.filter-section{
+  border: 2px solid #171717;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+.display-section{
+  height: 600px;
+  background-color: #171717;
+}
